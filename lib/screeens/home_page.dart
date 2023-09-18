@@ -14,7 +14,7 @@ class _ThaiHomePageState extends State<ThaiHomePage> {
   final TextEditingController _searchController = TextEditingController();
 
   List<ChatBubble> chat = [
-    ChatBubble(
+    const ChatBubble(
         name: "Thai",
         isMe: false,
         message:
@@ -22,7 +22,7 @@ class _ThaiHomePageState extends State<ThaiHomePage> {
   ];
 
   Future<void> addUser(String word) async {
-    const serverUrl = 'http://77.125.47.43:5000';
+    const serverUrl = 'http://workonit.azurewebsites.net';
     final response = await http.post(
       Uri.parse('$serverUrl/send_message'),
       body: json.encode({'username': word}),
@@ -108,7 +108,7 @@ class _ThaiHomePageState extends State<ThaiHomePage> {
           color: Colors.black,
           height: deviceHeight,
           child: Scaffold(
-            appBar: AppBar(title: Text("Chats")),
+            appBar: AppBar(title: const Text("Chats")),
           ),
         )
       ],
