@@ -22,7 +22,8 @@ class _ThaiHomePageState extends State<ThaiHomePage> {
   ];
 
   Future<void> addUser(String word) async {
-    const serverUrl = 'http://workonit.azurewebsites.net';
+    print("hsad");
+    const serverUrl = 'workonit-back.azurewebsites.net';
     final response = await http.post(
       Uri.parse('$serverUrl/send_message'),
       body: json.encode({'username': word}),
