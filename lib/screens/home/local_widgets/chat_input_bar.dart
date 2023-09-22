@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:thaiapp/state_managment/chat_state.dart';
 
 class ChatInputBar extends StatefulWidget {
   const ChatInputBar({super.key});
@@ -20,6 +22,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
           if (isEmpty != val.isEmpty) setState(() => isEmpty = val.isEmpty);
         },
         onSubmitted: (value) {
+          Provider.of<ChatState>(context, listen: false).sendMessage(value);
           _controller.clear();
           setState(() {});
         },

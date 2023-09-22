@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         hintColor: const Color.fromARGB(255, 165, 215, 232),
         useMaterial3: true,
       ),
-      home: const JobPageTitle(jobTitle: "Workonit"),
+      home: const HomeScreen(),
     );
   }
 }
