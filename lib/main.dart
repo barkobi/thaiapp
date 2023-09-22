@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaiapp/screens/home/home_screen.dart';
+import 'package:thaiapp/screens/job_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         hintColor: const Color.fromARGB(255, 165, 215, 232),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const JobPageTitle(jobTitle: "Workonit"),
     );
   }
 }
