@@ -22,8 +22,14 @@ class ChatState extends ChangeNotifier {
       isMe: false,
     );
 
-    _chat!.messages = [..._chat!.messages, message, message2];
+    _chat!.messages = [..._chat!.messages, message];
     notifyListeners();
+    Future.delayed(
+      const Duration(seconds: 2),
+    ).then((value) {
+      _chat!.messages = [..._chat!.messages, message2];
+      notifyListeners();
+    });
     try {
       // await ChatDB().sendMessage(sender.gangId, _message);
     } catch (e) {
