@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:thaiapp/models/message.dart';
 import 'dart:math';
@@ -34,9 +35,8 @@ class _ChatBubbleState extends State<ChatBubble> {
             if (widget.message.isMe!)
               CircleAvatar(
                 radius: min(_size.height * 0.05, 30),
-                backgroundColor: widget.message.isMe!
-                    ? Colors.amber.withOpacity(0.8)
-                    : Colors.amber.withOpacity(0.5),
+                backgroundColor: Colors.amber.withOpacity(0.8),
+                child: SvgPicture.asset("assets/user.svg"),
               ),
             Container(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
@@ -103,9 +103,8 @@ class _ChatBubbleState extends State<ChatBubble> {
             if (!widget.message.isMe!)
               CircleAvatar(
                 radius: min(_size.height * 0.05, 30),
-                backgroundColor: widget.message.isMe!
-                    ? Colors.amber.withOpacity(0.8)
-                    : Colors.amber.withOpacity(0.5),
+                backgroundColor: Colors.amber.withOpacity(0.5),
+                child: SvgPicture.asset("assets/bot.svg"),
               ),
           ],
         ),
