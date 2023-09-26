@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thaiapp/screeens/home_page.dart';
+import 'package:thaiapp/screens/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Thai Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: const Color.fromARGB(255, 11, 36, 71),
         secondaryHeaderColor: const Color.fromARGB(255, 25, 55, 109),
@@ -20,8 +21,7 @@ class MyApp extends StatelessWidget {
         hintColor: const Color.fromARGB(255, 165, 215, 232),
         useMaterial3: true,
       ),
-      home: const ThaiHomePage(),
-      debugShowCheckedModeBanner: false,
+      home: const HomeScreen(),
     );
   }
 }
