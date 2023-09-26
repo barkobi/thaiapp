@@ -1,0 +1,50 @@
+name: Compile and Copy Flutter Web
+
+on:
+  push:
+    branches:
+      - Tomer  # You can specify the branch you want to trigger this workflow on
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v4
+        with:
+          flutter-version: '3.13.4'  # Update to your Flutter version
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Build Flutter Web
+        run: flutter build web
+
+      - name: Copy Web Build
+        run: |
+          mkdir -p copied_build
+          cp -r build/web/* copied_build/
+
+      - name: Checkout Destination Repository
+        uses: actions/checkout@v2
+        with:
+          repository: TomerMellick/workonit_front_web 
+          path: destination-repo
+
+      - name: Copy Build to Destination Repository
+        run: |
+          cp -r copied_build/* destination-repo/public-flutter
+
+      - name: Commit and Push Changes
+        run: |
+          cd destination-repo
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add .
+          git commit -m "Update Flutter Web Build"
+          git push
+
