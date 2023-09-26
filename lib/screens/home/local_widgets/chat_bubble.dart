@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:thaiapp/models/message.dart';
@@ -23,7 +24,8 @@ class _ChatBubbleState extends State<ChatBubble> {
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
 
-    return FloatingWidget(
+    return Animate(
+      effects: [FadeEffect(), SlideEffect(begin: Offset(0, 0.5))],
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
