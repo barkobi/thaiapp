@@ -31,6 +31,7 @@ class _ChatBubbleState extends State<ChatBubble> {
               ? MainAxisAlignment.start
               : MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (widget.message.isMe!)
               CircleAvatar(
