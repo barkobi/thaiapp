@@ -33,11 +33,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: TomerMellick/workonit_front_web 
-          path: destination-repo
+          path: workonit_front_web
 
       - name: Copy Build to Destination Repository
         run: |
-          cp -r copied_build/* destination-repo/public-flutter
+          cp -r copied_build/* workonit_front_web/public-flutter
 
       - name: Commit and Push Changes
         run: |
