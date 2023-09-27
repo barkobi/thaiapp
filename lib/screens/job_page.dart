@@ -64,6 +64,21 @@ class JobPageTitle extends StatelessWidget {
                   JobSummaryAndApply(),
                 ],
               ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                  top: deviceHeight * 0.2, left: deviceWidth * 0.1),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: deviceWidth * 0.1,
+                    height: deviceHeight * 0.1,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.rectangle, color: Colors.black),
+                  ),
+                ],
+              ),
             )
           ],
         ),

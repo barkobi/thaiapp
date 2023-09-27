@@ -4,13 +4,31 @@ import 'package:thaiapp/screens/home/local_widgets/chat_bubble.dart';
 import 'package:thaiapp/screens/home/local_widgets/chat_input_bar.dart';
 import 'package:thaiapp/state_managment/chat_state.dart';
 
-class Chat extends StatelessWidget {
-  const Chat({super.key});
+class Chat extends StatefulWidget {
+  Chat({super.key});
+
+  @override
+  State<Chat> createState() => _ChatState();
+}
+
+class _ChatState extends State<Chat> {
+  final ScrollController _controller = ScrollController();
+
+  @override
+  void didChangeDependencies() {
+    if (_controller.hasClients) {
+      _controller.animateTo(
+        _controller.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn,
+      );
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
     final chatState = Provider.of<ChatState>(context);
-    print(chatState.chat!.messages!.length);
 
     return Expanded(
       child: Container(
@@ -19,12 +37,13 @@ class Chat extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: chatState.chat!.messages!.length,
+                controller: _controller,
+                itemCount: chatState.chat!.messages.length,
                 itemBuilder: (context, index) =>
-                    ChatBubble(chatState.chat!.messages![index]),
+                    ChatBubble(chatState.chat!.messages[index]),
               ),
             ),
-            ChatInputBar(),
+            const ChatInputBar(),
           ],
         ),
       ),

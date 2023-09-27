@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thaiapp/screens/home/local_widgets/chat.dart';
 import 'package:thaiapp/screens/home/local_widgets/drawer.dart';
-import 'package:thaiapp/screens/home_page.dart';
 import 'package:thaiapp/state_managment/chat_state.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,13 +12,12 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          ThaiDrawer(),
+          const ThaiDrawer(),
           ChangeNotifierProvider<ChatState>(
             create: (context) => ChatState(),
             lazy: false,
             child: Chat(),
           ),
-          //ThaiHomePage()
         ],
       ),
     );
