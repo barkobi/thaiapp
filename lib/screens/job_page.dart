@@ -80,24 +80,36 @@ class JobPageTitle extends StatelessWidget {
                     top: deviceHeight * 0.15,
                     left: deviceWidth * 0.05,
                     bottom: deviceHeight * 0.1),
-                child: SizedBox(
-                  width: deviceWidth,
-                  height: ((deviceWidth + deviceHeight) / 2) * 0.215,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: jobSuggestions.length,
-                    itemBuilder: (context, index) => GestureDetector(
-                      onTap: () {},
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: index == 0 ? 0 : deviceWidth * 0.07,
-                            right: index == jobSuggestions.length - 1
-                                ? deviceWidth * 0.05
-                                : 0),
-                        child: SimilarJob(job: jobSuggestions[index]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Similar jobs you may be interested:",
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 30),
+                    SizedBox(
+                      width: deviceWidth,
+                      height: ((deviceWidth + deviceHeight) / 2) * 0.215,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: jobSuggestions.length,
+                        itemBuilder: (context, index) => GestureDetector(
+                          onTap: () {},
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: index == 0 ? 0 : deviceWidth * 0.07,
+                                right: index == jobSuggestions.length - 1
+                                    ? deviceWidth * 0.05
+                                    : 0),
+                            child: SimilarJob(job: jobSuggestions[index]),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ))
           ],
         ),
