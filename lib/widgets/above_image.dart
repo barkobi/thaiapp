@@ -122,22 +122,25 @@ class AboveImageTexts extends StatelessWidget {
                           height: 35,
                           child: Row(children: [
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Colors.green,
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(4),
                                       bottomLeft: Radius.circular(4))),
                               width: 30,
-                              child: Icon(
+                              child: const Icon(
                                 Icons.check,
                                 size: 20,
                               ),
                             ),
                             Container(
-                              decoration:
-                                  BoxDecoration(color: Colors.green[300]),
+                              decoration: BoxDecoration(
+                                  color: Colors.green[300],
+                                  borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(4),
+                                      bottomRight: Radius.circular(4))),
                               width: 60,
-                              child: Text("Verified"),
+                              child: const Text("Verified"),
                             )
                           ]),
                         )
