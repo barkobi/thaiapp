@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:thaiapp/data/data.dart';
 
 class JobDescription extends StatelessWidget {
-  const JobDescription({super.key});
+  const JobDescription({super.key, required this.description});
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class JobDescription extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              dummy_data,
+              description,
               style: const TextStyle(
                 fontSize: 18,
                 height: 1.5,

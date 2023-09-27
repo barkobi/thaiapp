@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:thaiapp/widgets/above_image.dart';
 
 class ImageTopShader extends StatelessWidget {
-  const ImageTopShader({super.key});
+  const ImageTopShader(
+      {super.key,
+      required this.jobImage,
+      required this.rank,
+      required this.jobName});
+  final String jobImage;
+  final double rank;
+  final String jobName;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +38,11 @@ class ImageTopShader extends StatelessWidget {
             ),
           ),
         ),
-        AboveImageTexts(),
+        AboveImageTexts(
+          jobImage: jobImage,
+          rank: rank,
+          jobName: jobName,
+        ),
       ],
     );
   }

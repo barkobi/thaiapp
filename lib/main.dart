@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:thaiapp/data/data.dart';
+import 'package:thaiapp/models/job.dart';
 import 'package:thaiapp/screens/home/home_screen.dart';
 import 'package:thaiapp/screens/job_page.dart';
 
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         hintColor: const Color.fromARGB(255, 165, 215, 232),
         useMaterial3: true,
       ),
-      home: const JobPageTitle(jobTitle: "Bar"),
+      home: JobPageTitle(job: jobsList[0], jobSuggestions: jobsList),
     );
   }
 }

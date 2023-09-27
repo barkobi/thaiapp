@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:thaiapp/data/data.dart';
+import 'package:thaiapp/models/job.dart';
 import 'package:thaiapp/widgets/Image_top.dart';
 import 'package:thaiapp/widgets/job_description.dart';
 import 'package:thaiapp/widgets/job_summary_col.dart';
+import 'package:thaiapp/widgets/similar_job_wid.dart';
 
 class JobPageTitle extends StatelessWidget {
-  const JobPageTitle({super.key, required this.jobTitle});
+  const JobPageTitle(
+      {super.key, required this.job, required this.jobSuggestions});
 
-  final String jobTitle;
+  final Job job;
+  final List<Job> jobSuggestions;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class JobPageTitle extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              jobTitle,
+              job.name,
               style: TextStyle(
                 color: Theme.of(context).secondaryHeaderColor,
                 fontSize: deviceWidth * 0.02,
@@ -51,35 +54,51 @@ class JobPageTitle extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(color: Colors.grey[300]),
                 width: deviceWidth,
-                child: const ImageTopShader(),
+                child: ImageTopShader(
+                  jobImage: job.jobImage,
+                  rank: job.rank,
+                  jobName: job.name,
+                ),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(top: deviceHeight * 0.2),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  JobDescription(),
-                  JobSummaryAndApply(),
+                  JobDescription(description: job.description),
+                  JobSummaryAndApply(
+                      jobtype: job.jobtype,
+                      location: job.location,
+                      salary: job.annualSalary),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                  top: deviceHeight * 0.2, left: deviceWidth * 0.1),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: deviceWidth * 0.1,
-                    height: deviceHeight * 0.1,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.rectangle, color: Colors.black),
+                padding: EdgeInsets.only(
+                    top: deviceHeight * 0.15,
+                    left: deviceWidth * 0.05,
+                    bottom: deviceHeight * 0.1),
+                child: SizedBox(
+                  width: deviceWidth,
+                  height: ((deviceWidth + deviceHeight) / 2) * 0.215,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: jobSuggestions.length,
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {},
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: index == 0 ? 0 : deviceWidth * 0.07,
+                            right: index == jobSuggestions.length - 1
+                                ? deviceWidth * 0.05
+                                : 0),
+                        child: SimilarJob(job: jobSuggestions[index]),
+                      ),
+                    ),
                   ),
-                ],
-              ),
-            )
+                ))
           ],
         ),
       ),

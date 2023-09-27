@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flag/flag.dart';
 
 class AboveImageTexts extends StatelessWidget {
-  const AboveImageTexts({super.key});
+  const AboveImageTexts(
+      {super.key,
+      required this.jobImage,
+      required this.rank,
+      required this.jobName});
+  final String jobImage;
+  final double rank;
+  final String jobName;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class AboveImageTexts extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8)),
-                child: Image.asset('assets/mcdonalds.png'),
+                child: Image.asset(jobImage),
               ),
               const SizedBox(width: 20),
               SizedBox(
@@ -48,9 +55,9 @@ class AboveImageTexts extends StatelessWidget {
                       children: [
                         const Icon(Icons.food_bank),
                         const SizedBox(width: 10),
-                        const Text(
-                          "Mc'donalds",
-                          style: TextStyle(
+                        Text(
+                          jobName,
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
@@ -79,10 +86,10 @@ class AboveImageTexts extends StatelessWidget {
                             shape: BoxShape.rectangle,
                             color: Colors.orange,
                           ),
-                          child: const Text(
-                            '3',
+                          child: Text(
+                            '${rank.round()}',
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -97,9 +104,9 @@ class AboveImageTexts extends StatelessWidget {
                             5,
                             (index) {
                               IconData iconData =
-                                  index < 3 ? Icons.star : Icons.star_border;
+                                  index < rank ? Icons.star : Icons.star_border;
                               Color color =
-                                  index < 3 ? Colors.orange : Colors.grey;
+                                  index < rank ? Colors.orange : Colors.grey;
                               return Icon(
                                 iconData,
                                 color: color,

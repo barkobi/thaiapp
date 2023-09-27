@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:thaiapp/models/job.dart';
 import 'package:thaiapp/widgets/job_summary_item.dart';
 
 class JobSummaryAndApply extends StatelessWidget {
-  const JobSummaryAndApply({super.key});
-
+  const JobSummaryAndApply(
+      {super.key,
+      required this.jobtype,
+      required this.location,
+      required this.salary});
+  final String location;
+  final Jobtype jobtype;
+  final String salary;
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -64,10 +71,11 @@ class JobSummaryAndApply extends StatelessWidget {
                 padding: EdgeInsets.only(
                   left: deviceWidth * 0.025,
                 ),
-                child: const JobSummaryItem(
+                child: JobSummaryItem(
                   headline: "Location",
-                  data: "New York, USA",
-                  icon: Icon(Icons.location_on, size: 16, color: Colors.blue),
+                  data: location,
+                  icon: const Icon(Icons.location_on,
+                      size: 16, color: Colors.blue),
                 ),
               ),
               SizedBox(height: deviceHeight * 0.01),
@@ -75,10 +83,14 @@ class JobSummaryAndApply extends StatelessWidget {
                 padding: EdgeInsets.only(
                   left: deviceWidth * 0.025,
                 ),
-                child: const JobSummaryItem(
+                child: JobSummaryItem(
                   headline: "Job Type",
-                  data: "Full-time",
-                  icon: Icon(Icons.work, size: 16, color: Colors.blue),
+                  data: jobtype == Jobtype.fullTime
+                      ? "Full Time"
+                      : (jobtype == Jobtype.partTime
+                          ? "Part Time"
+                          : "One Time"),
+                  icon: const Icon(Icons.work, size: 16, color: Colors.blue),
                 ),
               ),
               SizedBox(height: deviceHeight * 0.01),
@@ -86,10 +98,11 @@ class JobSummaryAndApply extends StatelessWidget {
                 padding: EdgeInsets.only(
                   left: deviceWidth * 0.025,
                 ),
-                child: const JobSummaryItem(
+                child: JobSummaryItem(
                   headline: "Salary",
-                  data: "\$60,000 - \$80,000",
-                  icon: Icon(Icons.attach_money, size: 16, color: Colors.blue),
+                  data: salary,
+                  icon: const Icon(Icons.attach_money,
+                      size: 16, color: Colors.blue),
                 ),
               ),
               SizedBox(height: deviceHeight * 0.01),
