@@ -93,131 +93,139 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 25),
-                const Icon(Icons.lock, size: 50),
-                const SizedBox(height: 25),
-                Text(
-                  "Create an account",
-                  style: TextStyle(color: Colors.grey[700], fontSize: 16),
-                ),
-                const SizedBox(height: 25),
-                MyTextField(
-                  controller: emailController,
-                  hintText: "Email",
-                  obscureText: false,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  controller: userNameController,
-                  hintText: "User's Name",
-                  obscureText: false,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  controller: passwordController,
-                  hintText: "Password",
-                  obscureText: true,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  controller: confirmPassController,
-                  hintText: "Confirm Password",
-                  obscureText: true,
-                ),
-                const SizedBox(height: 25),
-                MyButton(
-                  signText: "Sign Up",
-                  onTap: signUp,
-                ),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height * 2,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.35,
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
+                    const SizedBox(height: 25),
+                    const Icon(Icons.lock, size: 50),
+                    const SizedBox(height: 25),
                     Text(
-                      "Continue as",
-                      style: TextStyle(color: Colors.grey[700]),
+                      "Create an account",
+                      style: TextStyle(color: Colors.grey[700], fontSize: 16),
                     ),
-                    const SizedBox(width: 4),
-                    GestureDetector(
-                      onTap: widget.onGuestTap,
-                      child: const Text(
-                        "Guest",
-                        style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold),
+                    const SizedBox(height: 25),
+                    MyTextField(
+                      controller: emailController,
+                      hintText: "Email",
+                      obscureText: false,
+                    ),
+                    const SizedBox(height: 10),
+                    MyTextField(
+                      controller: userNameController,
+                      hintText: "User's Name",
+                      obscureText: false,
+                    ),
+                    const SizedBox(height: 10),
+                    MyTextField(
+                      controller: passwordController,
+                      hintText: "Password",
+                      obscureText: true,
+                    ),
+                    const SizedBox(height: 10),
+                    MyTextField(
+                      controller: confirmPassController,
+                      hintText: "Confirm Password",
+                      obscureText: true,
+                    ),
+                    const SizedBox(height: 25),
+                    MyButton(
+                      signText: "Sign Up",
+                      onTap: signUp,
+                    ),
+                    const SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Continue as",
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                        const SizedBox(width: 4),
+                        GestureDetector(
+                          onTap: widget.onGuestTap,
+                          child: const Text(
+                            "Guest",
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Divider(
+                              thickness: 0.5,
+                              color: Colors.grey[400],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            child: Text(
+                              "Or Continue with",
+                              style: TextStyle(color: Colors.grey[500]),
+                            ),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              thickness: 0.5,
+                              color: Colors.grey[400],
+                            ),
+                          ),
+                        ],
                       ),
+                    ),
+                    const SizedBox(height: 50),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SquareTile(
+                          onTap: () => AuthServer().signInWithGoogle(),
+                          imagePath: "assets/google.png",
+                        ),
+                        const SizedBox(width: 25),
+                        SquareTile(
+                          onTap: () {},
+                          imagePath: "assets/apple.png",
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 50),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Already have an account?",
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                        const SizedBox(width: 4),
+                        GestureDetector(
+                          onTap: widget.onTap,
+                          child: const Text(
+                            "Sign in",
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
                     )
                   ],
                 ),
-                const SizedBox(height: 30),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Text(
-                          "Or Continue with",
-                          style: TextStyle(color: Colors.grey[500]),
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SquareTile(
-                      onTap: () => AuthServer().signInWithGoogle(),
-                      imagePath: "assets/google.png",
-                    ),
-                    const SizedBox(width: 25),
-                    SquareTile(
-                      onTap: () {},
-                      imagePath: "assets/apple.png",
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Already have an account?",
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                    const SizedBox(width: 4),
-                    GestureDetector(
-                      onTap: widget.onTap,
-                      child: const Text(
-                        "Sign in",
-                        style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold),
-                      ),
-                    )
-                  ],
-                )
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
