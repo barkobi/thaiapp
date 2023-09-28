@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:thaiapp/models/job.dart';
 
-class SimilarJob extends StatelessWidget {
+class SimilarJob extends StatefulWidget {
   const SimilarJob({super.key, required this.job});
   final Job job;
 
+  @override
+  State<SimilarJob> createState() => _SimilarJobState();
+}
+
+class _SimilarJobState extends State<SimilarJob> {
+  bool isHovered = false;
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -41,7 +47,7 @@ class SimilarJob extends StatelessWidget {
                       child: FractionallySizedBox(
                         heightFactor: 0.55,
                         child: Image.asset(
-                          job.jobImage,
+                          widget.job.jobImage,
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -53,13 +59,13 @@ class SimilarJob extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
                           child: Text(
-                            job.name,
+                            widget.job.name,
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Text(
-                          job.jobtitle,
+                          widget.job.jobtitle,
                           style: const TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
                         ),
@@ -90,16 +96,16 @@ class SimilarJob extends StatelessWidget {
                             width: 15,
                           ),
                           Text(
-                            job.location,
+                            widget.job.location,
                             style: const TextStyle(color: Colors.black),
                           ),
                           const SizedBox(width: 15),
                           const Icon(Icons.work, size: 16, color: Colors.grey),
                           const SizedBox(width: 15),
                           Text(
-                            job.jobtype == Jobtype.fullTime
+                            widget.job.jobtype == Jobtype.fullTime
                                 ? "Full Time"
-                                : (job.jobtype == Jobtype.partTime
+                                : (widget.job.jobtype == Jobtype.partTime
                                     ? "Part Time"
                                     : "One Time"),
                             style: const TextStyle(color: Colors.black),
@@ -114,7 +120,7 @@ class SimilarJob extends StatelessWidget {
                             width: 15,
                           ),
                           Text(
-                            job.annualSalary,
+                            widget.job.annualSalary,
                             style: const TextStyle(color: Colors.black),
                           ),
                           const SizedBox(width: 15),

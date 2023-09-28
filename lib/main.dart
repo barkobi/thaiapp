@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:thaiapp/data/data.dart';
-import 'package:thaiapp/models/job.dart';
 import 'package:thaiapp/screens/home/home_screen.dart';
-import 'package:thaiapp/screens/job_page.dart';
+import 'package:thaiapp/screens/loginorreg.dart';
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         hintColor: const Color.fromARGB(255, 165, 215, 232),
         useMaterial3: true,
       ),
-      home: JobPageTitle(job: jobsList[0], jobSuggestions: jobsList),
+      home: LoginOrReg(showLoginPage: false),
     );
   }
 }

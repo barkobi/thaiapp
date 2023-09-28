@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "633441857207",
+    "project_id": "workonit-68ac9",
+    "storage_bucket": "workonit-68ac9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633441857207:android:53254ee9676dbf9b742732",
+        "android_client_info": {
+          "package_name": "com.example.thaiapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlHcwwiOfXh0gGqt5oO4GRSqd9NqFh3tA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

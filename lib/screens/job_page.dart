@@ -5,13 +5,18 @@ import 'package:thaiapp/widgets/job_description.dart';
 import 'package:thaiapp/widgets/job_summary_col.dart';
 import 'package:thaiapp/widgets/similar_job_wid.dart';
 
-class JobPageTitle extends StatelessWidget {
+class JobPageTitle extends StatefulWidget {
   const JobPageTitle(
       {super.key, required this.job, required this.jobSuggestions});
 
   final Job job;
   final List<Job> jobSuggestions;
 
+  @override
+  State<JobPageTitle> createState() => _JobPageTitleState();
+}
+
+class _JobPageTitleState extends State<JobPageTitle> {
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -25,7 +30,7 @@ class JobPageTitle extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              job.name,
+              widget.job.name,
               style: TextStyle(
                 color: Theme.of(context).secondaryHeaderColor,
                 fontSize: deviceWidth * 0.02,
@@ -36,7 +41,7 @@ class JobPageTitle extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 foregroundColor: Colors.white,
-                fixedSize: Size(deviceWidth * 0.2, deviceHeight * 0.065),
+                fixedSize: Size(deviceWidth * 0.17, deviceHeight * 0.065),
               ),
               child: Text(
                 "Easy Apply",
@@ -55,9 +60,9 @@ class JobPageTitle extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.grey[300]),
                 width: deviceWidth,
                 child: ImageTopShader(
-                  jobImage: job.jobImage,
-                  rank: job.rank,
-                  jobName: job.name,
+                  jobImage: widget.job.jobImage,
+                  rank: widget.job.rank,
+                  jobName: widget.job.name,
                 ),
               ),
             ),
@@ -67,50 +72,47 @@ class JobPageTitle extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  JobDescription(description: job.description),
+                  JobDescription(description: widget.job.description),
                   JobSummaryAndApply(
-                      jobtype: job.jobtype,
-                      location: job.location,
-                      salary: job.annualSalary),
+                      jobtype: widget.job.jobtype,
+                      location: widget.job.location,
+                      salary: widget.job.annualSalary),
                 ],
               ),
             ),
             Padding(
-                padding: EdgeInsets.only(
-                    top: deviceHeight * 0.15,
-                    left: deviceWidth * 0.05,
-                    bottom: deviceHeight * 0.1),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Similar jobs you may be interested:",
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 30),
-                    SizedBox(
-                      width: deviceWidth,
-                      height: ((deviceWidth + deviceHeight) / 2) * 0.215,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: jobSuggestions.length,
-                        itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {},
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: index == 0 ? 0 : deviceWidth * 0.07,
-                                right: index == jobSuggestions.length - 1
-                                    ? deviceWidth * 0.05
-                                    : 0),
-                            child: SimilarJob(job: jobSuggestions[index]),
-                          ),
-                        ),
+              padding: EdgeInsets.only(
+                  top: deviceHeight * 0.15,
+                  left: deviceWidth * 0.05,
+                  bottom: deviceHeight * 0.1),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Similar jobs you may be interested:",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 30),
+                  SizedBox(
+                    width: deviceWidth,
+                    height: ((deviceWidth + deviceHeight) / 2) * 0.215,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: widget.jobSuggestions.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: EdgeInsets.only(
+                            left: index == 0 ? 0 : deviceWidth * 0.07,
+                            right: index == widget.jobSuggestions.length - 1
+                                ? deviceWidth * 0.05
+                                : 0),
+                        child: SimilarJob(job: widget.jobSuggestions[index]),
                       ),
                     ),
-                  ],
-                ))
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
